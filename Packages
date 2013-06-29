@@ -1,0 +1,10 @@
+code.google.com/p/go.crypto/bcrypt
+code.google.com/p/go.crypto/scrypt
+github.com/eaigner/hood
+github.com/garyburd/redigo/redis
+github.com/gorilla/mux
+github.com/gorilla/schema
+github.com/gorilla/securecookie
+github.com/gorilla/sessions
+github.com/hoisie/mustache
+github.com/ziutek/mymysql/godrv

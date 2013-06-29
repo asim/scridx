@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /submit/*
+Disallow: /logout
+Disallow: /login
+Disallow: /signup

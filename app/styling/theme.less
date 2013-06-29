@@ -1,0 +1,383 @@
+/*!
+ * Bootstrap v2.3.1
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */
+// Core variables and mixins
+@import "variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "bootstrap/less/mixins.less";
+
+// CSS Reset
+@import "bootstrap/less/reset.less";
+
+// Grid system and page structure
+@import "bootstrap/less/scaffolding.less";
+@import "bootstrap/less/grid.less";
+@import "bootstrap/less/layouts.less";
+
+// Base CSS
+@import "bootstrap/less/type.less";
+@import "bootstrap/less/code.less";
+@import "bootstrap/less/forms.less";
+@import "bootstrap/less/tables.less";
+
+// Components: common
+@import "bootstrap/less/sprites.less";
+@import "bootstrap/less/dropdowns.less";
+@import "bootstrap/less/wells.less";
+@import "bootstrap/less/component-animations.less";
+@import "bootstrap/less/close.less";
+
+// Components: Buttons & Alerts
+@import "bootstrap/less/buttons.less";
+@import "bootstrap/less/button-groups.less";
+@import "bootstrap/less/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
+
+// Components: Nav
+@import "bootstrap/less/navs.less";
+@import "bootstrap/less/navbar.less";
+@import "bootstrap/less/breadcrumbs.less";
+@import "bootstrap/less/pagination.less";
+@import "bootstrap/less/pager.less";
+
+// Components: Popovers
+@import "bootstrap/less/modals.less";
+@import "bootstrap/less/tooltip.less";
+@import "bootstrap/less/popovers.less";
+
+// Components: Misc
+@import "bootstrap/less/thumbnails.less";
+@import "bootstrap/less/media.less";
+@import "bootstrap/less/labels-badges.less";
+@import "bootstrap/less/progress-bars.less";
+@import "bootstrap/less/accordion.less";
+@import "bootstrap/less/carousel.less";
+@import "bootstrap/less/hero-unit.less";
+
+@media (max-width: 767px) {
+ .logo-container .nav-btn:hover {
+   cursor: hand; cursor: pointer;
+  }
+ .logo-container .nav-btn img:hover {
+   background: @grayDark;
+ }
+   
+ .logo-container .nav-btn img {
+   background: lighten(@grayDark, 20%);
+ }
+
+ .navbar, .nav-collapse .nav {
+    margin: 0;
+  }
+  .sitenav {
+    border-bottom: 1px solid  #e5e5e5;
+  }
+  .sitenav-body {
+    padding: 50px 10% 0 10%;
+  }
+  .sitenav-foot {
+    padding: 0 10%;
+  }
+  #footer {
+    padding: 20px 10% 0 10%;
+  }
+  #body {
+    padding: 40px 10%;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .sitenav {
+    border-right: 1px solid  #e5e5e5;
+    position: fixed;
+    height: 100%;
+    width: 30%;
+    top: 0;
+    left: 0;
+    min-width: 225px;
+    max-width: 500px;
+    z-index: 100;
+  }
+
+  .sitenav-container {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+  }
+
+  .sitenav-body {
+    positon: relative;
+    padding-top: 50px;
+    min-height: 75%;
+  }
+  #sitenav-navbar {
+    margin: 0 auto;   
+    width: 206px;
+  }
+  .sitenav-foot {
+    position: relative;
+    text-align: center;
+  }
+  .sitenav-userinfo h3 {
+     margin: 0;
+  }
+  #body {
+    padding: 50px 85px;
+  }
+  #footer {
+    padding: 20px 85px 0 85px;
+  }
+  .main {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    left: 30%;
+    bottom: 0;
+    margin: 0;
+  }
+  .form-center {
+    margin: 0 10% 0 10%;
+  }
+  .alert-msg {
+    margin: 0 10% 20px 10%;
+  }
+}
+
+html, body, .container-fluid, .container-body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+.container-fluid {
+  padding: 0;
+}
+#body {
+  word-wrap: break-word;
+  min-height: 100%;
+}
+#main {
+  overflow:auto;
+  padding-bottom:170px; /* this needs to be bigger than footer height*/
+}
+#footer hr {
+  border-bottom: 1px solid #e5e5e5;
+}
+#footer {
+  position: relative;
+  margin-top: -170px; /* negative value of footer height */
+  height: 170px;
+  clear:both;
+  padding-top: 20px;
+}
+.navbar {
+  margin-bottom: 0;
+}
+.navbar .logo {
+  padding: 0;
+}
+.logo {
+ margin-right: 2px;
+}
+.logo-container img {
+  background: @grayDark;
+}
+.sitenav-ul {
+  width: 206px;
+  list-style: none;
+  margin: 10px 10px;
+}
+.sitenav-ul li div {
+  width: 47%;
+  display: inline-block;
+  margin-top: 5px;
+}
+.navbar .btn-navbar, .sitenav-ul .btn {
+  margin: 0;
+}
+.btn.btn-navbar {
+  float: left;
+}
+.font-small {
+  font-size: @fontSizeSmall;
+}
+.font-medium {
+  font-size: @fontSizeMedium;
+}
+.font-large {
+  font-size: @fontSizeLarge;
+}
+.font-xlarge {
+  font-size: x-large;
+}
+.jumbotron h1 {
+  margin-top: 0;
+}
+ul.inline>li {
+  padding: 0 10px 0 0;
+}
+ul.meta-icons>li {
+  list-style: none;
+  padding: 0;
+}
+.logline {
+  padding: 10px 0 0 0;
+}
+// meta info under title
+.meta-links {
+  margin: 0;
+}
+.meta-links a {
+  font-weight: bold;
+}
+.link-icon {
+  margin-right: 5px;
+}
+label.valid, div.sidetip {
+  display: inline-block;
+}
+label.error, div.sidetip {
+  font-weight: bold;
+  color: @red;
+}
+div.holding input {
+  margin-right: 10px;
+}
+div.control-top {
+  margin-top: 40px;
+}
+.top-border {
+  padding: 10px 0;
+  border-top: 1px solid #e5e5e5;
+}
+.top-buffer {
+  margin-top: 20px;
+}
+// disabled inputs on forms
+.input-style {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+
+  -ms-overflow-x: auto; /* IE8 */
+  overflow-x: auto;
+  -ms-overflow-y: auto; /* IE8 */
+  overflow-y: auto;
+  height: @baseLineHeight;
+  margin-bottom: 10px;
+  line-height: @baseLineHeight;
+  padding: 4px 6px;
+  background-color: darken(@inputBackground, 5%);
+  border: 1px solid @inputBorder;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear .2s, box-shadow linear .2s;
+  -moz-transition: border linear .2s, box-shadow linear .2s;
+  -o-transition: border linear .2s, box-shadow linear .2s;
+  transition: border linear .2s, box-shadow linear .2s;
+  -webkit-border-radius: @inputBorderRadius;
+}
+.pager {
+  margin: 30px 0 0 0;
+}
+// status icons
+.req-status {
+  padding: 2px 4px;
+  margin-bottom: @baseLineHeight;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  color: @infoText;
+  background-color: @infoBackground;
+  border: 1px solid @infoBorder;
+  .border-radius(@baseBorderRadius);
+}
+
+.req-pending {
+  color: @warningText;
+  background-color: @warningBackground;
+  border-color: @warningBorder;
+}
+
+.req-fulfilled {
+  color: @successText;
+  background-color: @successBackground;
+  border-color: @successBorder;
+}
+
+.req-new a {
+  color: @infoText;
+  font-weight: bold;
+}
+
+.req-pending a {
+  color: @warningText;
+  font-weight: bold;
+}
+
+.control-shared {
+  display: block;
+}
+.control-right {
+  width: 45%;
+  display: inline-block;
+  margin-bottom: 10px;
+  float: right;
+}
+.control-left {
+  width: 45%;
+  display: inline-block;
+  float: left;
+  margin-bottom: 10px;
+}
+.sitenav-userinfo {
+  padding: 5%;
+  text-align: center;
+  border-top: 1px solid  #e5e5e5;
+  border-bottom: 1px solid  #e5e5e5;
+}
+.user-logline {
+  line-height: 14px;
+}
+.sitenav-foot {
+  margin: 0 auto;
+  padding-bottom: 15px;
+}
+.text {
+  margin: 5px 0 0;
+  word-break: normal;
+}
+
+.comment {
+  border: 1px solid #e5e5e5;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+.comment-text {
+  background: @white;
+  border: 0;
+  margin: 0;
+  padding: 5px 0;
+}
+div [class*="comment"] {
+  background: lighten(@grayLighter, 5%);
+}
+div .comment0, div .comment0 .comment-text {
+  background: @white;
+}
+.alert-msg {
+  text-align: center;
+  color: @white;
+  background: lighten(#333, 5%);
+  border-color: darken(spin(@infoBackground, -10), 7%);
+}
+
+// Utility classes
+@import "bootstrap/less/utilities.less"; // Has to be last to override when necessary

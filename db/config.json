@@ -1,0 +1,14 @@
+{
+  "development": {
+    "driver": "mymysql",
+    "source": "tcp:127.0.0.1:3306*sdb_dev/sdb_dev/sdb_dev"
+  },
+  "production": {
+    "driver": "mymysql",
+    "source": "tcp:127.0.0.1:3306*sdb/sdb/sdb"
+  },
+  "test": {
+    "driver": "mymysql",
+    "source": "tcp:127.0.0.1:3306*sdb_test/sdb_test/sdb_test"
+  }
+}
