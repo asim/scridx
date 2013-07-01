@@ -893,6 +893,8 @@ div.control-top{margin-top:40px;}
 div [class*="comment"]{background:#fbfbfb;}
 div .comment0,div .comment0 .comment-text{background:#ffffff;}
 .alert-msg{text-align:center;color:#ffffff;background:#404040;border-color:#bce8f1;}
+.search-box form input{width:190px;}
+.search-box form{margin:5px 0 0;}
 .pull-right{float:right;}
 .pull-left{float:left;}
 .hide{display:none;}

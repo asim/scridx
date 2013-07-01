@@ -19,7 +19,7 @@ const (
   invalidDateString = "01/01/0011"
   validDateFormat = "01/02/2006"
   validDateRegex = `^(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])\/(19|20)\d\d$`
-  validWritersRegex = `^[[:alpha:]\s-,]+$`
+  validWritersRegex = `^[[:alpha:]\s-,.]+$`
   validUsernameLength = 15
   validEmailLength = 254
   validNameLength = 20

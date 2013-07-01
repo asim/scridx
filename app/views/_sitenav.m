@@ -3,8 +3,8 @@
  <div class="sitenav-body">
  <div id="sitenav-navbar">
   <div class="container-fluid">  
-   <div class="navbar ">
-    <div class="">
+   <div class="navbar">
+    <div>
      <div class="container-fluid">
       <div class="logo-container">
        <div> 
@@ -39,6 +39,11 @@
         </li>
         </ul>
        </div> <!-- /nav-collapse -->
+      <div class="search-box">
+        <form action="/search" method="GET">
+          <input type="text" name="q" id="q" placeholder="Search"/>
+        </form>
+      </div>
       </div> <!-- /container-fluid --> 
      </div> <!-- /navbar-inner -->
     </div> <!-- /navbar -->

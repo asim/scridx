@@ -8,3 +8,4 @@ github.com/gorilla/securecookie
 github.com/gorilla/sessions
 github.com/hoisie/mustache
 github.com/ziutek/mymysql/godrv
+github.com/mattbaird/elastigo

@@ -51,6 +51,9 @@ func RegisterRoutes() *mux.Router {
   r.Handle("/login", Handler(LoginHandler))
   r.Handle("/logout", Handler(LogoutHandler))
 
+  // Search
+  r.Handle("/search", Handler(SearchHandler))
+
   // Static
   r.Handle("/favicon.ico", http.HandlerFunc(FaviconHandler))
   r.Handle("/robots.txt", http.HandlerFunc(RobotHandler))

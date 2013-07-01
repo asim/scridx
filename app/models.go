@@ -65,13 +65,14 @@ func InitDB(config, env string) (*hood.Hood, error) {
   }
 
   // redis connection
-  err = initRedis()
-  if err != nil {
-    return nil, err
-  }
+//  err = initRedis()
+//  if err != nil {
+//    return nil, err
+//  }
 
   // Init worker
-  Worker()
+ // Worker()
+  Indexer()
 
   return DB, nil
 }
@@ -101,21 +102,21 @@ func cacheSave(i *LRUItem) {
   }()
 }
 
-func save(i interface{}) error {
+func save(i interface{}) (hood.Id, error) {
   err := DB.Validate(i)
   if err != nil {
     log.Println(err)
-    return err
+    return -1, err
   }
 
-  _, err = DB.Save(i)
+  var id hood.Id
+  id, err = DB.Save(i)
   if err != nil {
     log.Println(err)
     log.Println(err.Error())
-    return err
+    return -1, err
   }
-
-  return nil
+  return id, nil
 }
 
 func vote(table string, incr int, id hood.Id, user int64, v interface{}) error {
@@ -678,43 +679,55 @@ func GetUserSenseData(id int64) (*UserSenseData, bool) {
 }
 
 func (c *Comments) Save() error {
-  return save(c)
+  _, err := save(c)
+  return err
 }
 
 func (f *Feedback) Save() error {
-  votes := make(map[int64]bool)
-  i := &LRUItem{0, true, "feedback", f, votes}
-  cacheSave(i)
-  return save(f)
+//  votes := make(map[int64]bool)
+//  i := &LRUItem{0, true, "feedback", f, votes}
+//  cacheSave(i)
+  _, err := save(f)
+  return err
 }
 
 func (n *News) Save() error {
-  votes := make(map[int64]bool)
-  i := &LRUItem{0, true, "news", n, votes}
-  cacheSave(i)
-  return save(n)
+//  votes := make(map[int64]bool)
+//  i := &LRUItem{0, true, "news", n, votes}
+//  cacheSave(i)
+  _, err := save(n)
+  return err
 }
 
 func (r *Requests) Save() error {
-  votes := make(map[int64]bool)
-  i := &LRUItem{0, true, "request", r, votes}
-  cacheSave(i)
-  return save(r)
+//  votes := make(map[int64]bool)
+//  i := &LRUItem{0, true, "request", r, votes}
+//  cacheSave(i)
+  _, err := save(r)
+  return err
 }
 
 func (s *Scripts) Save() error {
-  votes := make(map[int64]bool)
-  i := &LRUItem{0, true, "script", s, votes}
-  cacheSave(i)
-  return save(s)
+//  votes := make(map[int64]bool)
+//  i := &LRUItem{0, true, "script", s, votes}
+//  cacheSave(i)
+  id, err := save(s)
+  if err == nil && id > 0 {
+    s.Id = id
+    Index(s)
+  }
+
+  return err
 }
 
 func (u *Users) Save() error {
-  return save(u)
+  _, err := save(u)
+  return err
 }
 
 func (us *UserSenseData) Save() error {
-  return save(us)
+  _, err := save(us)
+  return err
 }
 
 // Voting - occurs in transaction

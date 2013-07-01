@@ -6,8 +6,10 @@ import (
   "net/http"
   "strings"
   "github.com/gorilla/mux"
+  "github.com/mattbaird/elastigo/search"
   "scridx/crypt"
   "scridx/sessions"
+  "encoding/json"
 )
 
 type AppError struct {
@@ -1125,3 +1127,56 @@ func SignupFormHandler(ctx *sessions.Context) *AppError {
   return nil
 }
 
+func SearchHandler(ctx *sessions.Context) *AppError {
+  vars := ctx.R.URL.Query()
+  limit := 20
+  size := "20"
+
+  page, offset := GetPageOffset(vars, limit)
+  from := fmt.Sprintf("%d", offset)
+
+  q := vars.Get("q")
+  if q == "" {
+    ctx.Session.SetFlash(ctx.W, ctx.R, "Invalid search query")
+    http.Redirect(ctx.W, ctx.R, ctx.R.Referer(), 302)
+    return nil
+  }
+
+  if len(q) > 2048 {
+    ctx.Session.SetFlash(ctx.W, ctx.R, "Query is too long")
+    http.Redirect(ctx.W, ctx.R, ctx.R.Referer(), 302)
+    return nil
+  }
+
+  out, err := search.Search("scridx").Type("script").Search(q).From(from).Size(size).Result()
+
+  if err != nil {
+    log.Println(err)
+    ctx.Session.SetFlash(ctx.W, ctx.R, "An error occurred trying to search")
+    http.Redirect(ctx.W, ctx.R, ctx.R.Referer(), 302)
+    return nil
+  }
+
+  var scripts []Scripts
+  for _, hit := range out.Hits.Hits {
+    var s Scripts
+    err := json.Unmarshal(hit.Source, &s)
+    if err != nil {
+      log.Println(err)
+      continue
+    }
+
+    scripts = append(scripts, s)
+  }
+
+  pager := GetPager(ctx.R.URL, page, limit, out.Hits.Len())
+
+  d := *ctx.Data
+  d["results"] = scripts
+  d["pager"] = &pager
+  d["query"] = q
+  d["total"] = out.Hits.Total
+
+  Render(ctx, "search")
+  return nil
+}
