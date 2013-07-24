@@ -1,6 +1,6 @@
 package app
 
-import "scridx/sessions"
+import "github.com/asim/scridx/sessions"
 import "fmt"
 
 type ThreadedComment struct {

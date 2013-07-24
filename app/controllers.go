@@ -7,8 +7,8 @@ import (
   "strings"
   "github.com/gorilla/mux"
   "github.com/mattbaird/elastigo/search"
-  "scridx/crypt"
-  "scridx/sessions"
+  "github.com/asim/scridx/crypt"
+  "github.com/asim/scridx/sessions"
   "encoding/json"
 )
 

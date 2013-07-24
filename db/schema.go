@@ -23,9 +23,8 @@ type Scripts struct {
 
 func (table *Scripts) Indexes(indexes *hood.Indexes) {
 	indexes.Add("sdb_scripts_title_index", "title")
-	indexes.Add("sdb_scripts_stored_index", "stored")
-	indexes.Add("sdb_scripts_drafted_index", "drafted")
 	indexes.AddUnique("sdb_scripts_source_index", "source")
+	indexes.Add("sdb_scripts_rank_index", "rank")
 }
 
 type Requests struct {
@@ -44,6 +43,14 @@ type Requests struct {
 	Status        int8   `sql:"default(0)"`
 	UserId        int64  `sql:"notnull"`
 	FulfillUserId int64
+}
+
+func (table *Requests) Indexes(indexes *hood.Indexes) {
+	indexes.Add("sdb_requests_title_index", "title")
+	indexes.Add("sdb_requests_stored_index", "stored")
+	indexes.Add("sdb_requests_drafted_index", "drafted")
+	indexes.AddUnique("sdb_requests_source_index", "source")
+	indexes.Add("sdb_requests_rank_index", "rank")
 }
 
 type Users struct {
@@ -86,6 +93,12 @@ type News struct {
 	Text   string `sql:"size(65535)"`
 }
 
+func (table *News) Indexes(indexes *hood.Indexes) {
+	indexes.Add("sdb_news_title_index", "title")
+	indexes.AddUnique("sdb_news_source_index", "source")
+	indexes.Add("sdb_news_rank_index", "rank")
+}
+
 type Feedback struct {
 	Id     hood.Id
 	Title  string  `sql:"size(255),notnull"`
@@ -95,6 +108,12 @@ type Feedback struct {
 	Stored uint32  `sql:"notnull"`
 	UserId int64   `sql:"notnull"`
 	Text   string  `sql:"size(65535)"`
+}
+
+func (table *Feedback) Indexes(indexes *hood.Indexes) {
+	indexes.Add("sdb_feedback_title_index", "title")
+	indexes.AddUnique("sdb_feedback_source_index", "source")
+	indexes.Add("sdb_feedback_rank_index", "rank")
 }
 
 type Comments struct {
@@ -107,6 +126,11 @@ type Comments struct {
 	ParentId   int64   `sql:"notnull"`
 	EntityId   int64   `sql:"notnull"`
 	EntityType int16   `sql:"notnull"`
+}
+
+func (table *Comments) Indexes(indexes *hood.Indexes) {
+	indexes.Add("sdb_comments_entity_index", "entity_type", "entity_id")
+	indexes.Add("sdb_comments_karma_index", "karma")
 }
 
 type ScriptVotes struct {

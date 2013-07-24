@@ -5,7 +5,7 @@ import (
     "github.com/garyburd/redigo/redis"
   "github.com/eaigner/hood"
   _ "github.com/ziutek/mymysql/godrv"
-  "scridx/db"
+  "github.com/asim/scridx/db"
   "strings"
   "fmt"
 )

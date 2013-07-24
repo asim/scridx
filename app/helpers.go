@@ -11,7 +11,7 @@ import (
   "github.com/eaigner/hood"
   "github.com/gorilla/schema"
   "github.com/hoisie/mustache"
-  "scridx/sessions"
+  "github.com/asim/scridx/sessions"
 )
 
 type FeedbackForm struct {

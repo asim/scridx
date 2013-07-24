@@ -7,7 +7,7 @@ import (
   "os"
   "path/filepath"
   _ "github.com/ziutek/mymysql/godrv"
-  "scridx/app"
+  "github.com/asim/scridx/app"
 )
 
 var addr = flag.String("addr", ":8080", "http service address")
