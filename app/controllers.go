@@ -10,6 +10,7 @@ import (
   "github.com/asim/scridx/crypt"
   "github.com/asim/scridx/sessions"
   "encoding/json"
+  "net/url"
 )
 
 type AppError struct {
@@ -172,7 +173,7 @@ func ListHandler(ctx *sessions.Context) *AppError {
 func VoteHandler(ctx *sessions.Context) *AppError {
   // Is the user logged in?
   if !ctx.UserSession.LoggedIn() {
-    ctx.Session.SetFlash(ctx.W, ctx.R, "You need to login first.") 
+    ctx.Session.SetFlash(ctx.W, ctx.R, "You need to login first.")
     http.Redirect(ctx.W, ctx.R, ctx.R.Referer(), 302)
     return nil
   }
@@ -600,7 +601,7 @@ func approveFormHandler(ctx *sessions.Context) *AppError {
     approve.FulfillUserId = request.FulfillUserId
     approve.Clean()
 
-    if err := approve.Save(); err != nil {
+    if err := approve.Update(); err != nil {
       formError(ctx, "approve", err.Error())
       return nil
     }
@@ -676,7 +677,7 @@ func fulfillFormHandler(ctx *sessions.Context) *AppError {
     fulfill.FulfillUserId = d["_user"].(*sessions.Token).Id
     fulfill.Clean()
     log.Println(fulfill)
-    if err := fulfill.Save(); err != nil {
+    if err := fulfill.Update(); err != nil {
       formError(ctx, "fulfill", err.Error())
       return nil
     }
@@ -1148,6 +1149,7 @@ func SearchHandler(ctx *sessions.Context) *AppError {
     return nil
   }
 
+  q = url.QueryEscape(q)
   out, err := search.Search("scridx").Type("script").Search(q).From(from).Size(size).Result()
 
   if err != nil {

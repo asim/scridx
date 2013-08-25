@@ -678,6 +678,12 @@ func GetUserSenseData(id int64) (*UserSenseData, bool) {
   return &us, true
 }
 
+func (r *Requests) Update() error {
+    query := "UPDATE requests set title = ?, logline = ?, writers = ?, source = ?, imdb = ?, wiki = ?, status = ?, fulfill_user_id = ?, drafted = ?, version = ? where id = ?"
+    _, err := DB.Exec(query, r.Title, r.Logline, r.Writers, r.Source, r.Imdb, r.Wiki, r.Status, r.FulfillUserId, r.Drafted, r.Version, r.Id)
+    return err
+}
+
 func (c *Comments) Save() error {
   _, err := save(c)
   return err
